@@ -1,6 +1,9 @@
 import SwiftUI
 
 public struct CameraControlsView: View {
+    public let currentShot: Int?
+    public let totalShots: Int?
+    public let canCapture: Bool
     public let isCapturing: Bool
     public let canRetake: Bool
     public let onCapture: () -> Void
@@ -8,12 +11,18 @@ public struct CameraControlsView: View {
     public let onRetake: () -> Void
     
     public init(
+        currentShot: Int? = nil,
+        totalShots: Int? = nil,
+        canCapture: Bool = true,
         isCapturing: Bool = false,
         canRetake: Bool = false,
         onCapture: @escaping () -> Void,
         onFlip: @escaping () -> Void = {},
         onRetake: @escaping () -> Void = {}
     ) {
+        self.currentShot = currentShot
+        self.totalShots = totalShots
+        self.canCapture = canCapture
         self.isCapturing = isCapturing
         self.canRetake = canRetake
         self.onCapture = onCapture
@@ -60,7 +69,7 @@ public struct CameraControlsView: View {
                 }
             }
             .buttonStyle(.plain)
-            .disabled(isCapturing)
+            .disabled(!canCapture || isCapturing)
             
             Spacer()
             

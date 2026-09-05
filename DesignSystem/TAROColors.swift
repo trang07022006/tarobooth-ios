@@ -21,6 +21,9 @@ public enum TAROColors {
     /// Dark / Camera Background (Near Black)
     public static let cameraBackground = Color(hex: "1A1819")
     
+    /// Dark Editor Background (Charcoal Near-Black)
+    public static let editorBackground = Color(hex: "1A1819")
+    
     /// Gray (Placeholder text, borders)
     public static let gray = Color.gray.opacity(0.4)
 }

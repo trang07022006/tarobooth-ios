@@ -21,6 +21,8 @@ public enum TAROIcons {
     public static let rotate = "rotate.right"
     public static let crop = "crop"
     public static let frame = "square.on.square"
+    public static let background = "paintpalette.fill"
+    public static let layout = "rectangle.3.group"
     public static let filter = "camera.filters"
     public static let text = "textformat"
     public static let sticker = "star.fill" // placeholder for sticker

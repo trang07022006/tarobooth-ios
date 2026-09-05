@@ -3,6 +3,8 @@ import SwiftUI
 struct RootView: View {
     @State private var navigationPath = NavigationPath()
     @State private var showSplash = true
+    @State private var currentSession = BoothSession()
+    @State private var galleryItems: [GalleryItem] = MockData.galleryItems
     
     var body: some View {
         if showSplash {
@@ -16,33 +18,33 @@ struct RootView: View {
                 }
         } else {
             NavigationStack(path: $navigationPath) {
-                HomeView(navigationPath: $navigationPath)
+                HomeView(navigationPath: $navigationPath, currentSession: $currentSession)
                     .navigationDestination(for: AppRoute.self) { route in
                         switch route {
                         case .home:
-                            HomeView(navigationPath: $navigationPath)
+                            HomeView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .templates:
-                            TemplateSelectionView(navigationPath: $navigationPath)
+                            TemplateSelectionView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .sourcePicker:
-                            PhotoSourceView(navigationPath: $navigationPath)
+                            PhotoSourceView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .camera:
-                            CameraView(navigationPath: $navigationPath)
+                            CameraView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .library:
-                            LibraryPickerView(navigationPath: $navigationPath)
+                            LibraryPickerView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .arrange:
-                            PhotoArrangeView(navigationPath: $navigationPath)
+                            PhotoArrangeView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .crop:
-                            CropPhotoView(navigationPath: $navigationPath)
+                            CropPhotoView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .review:
-                            PhotoReviewView(navigationPath: $navigationPath)
+                            PhotoReviewView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .editor:
-                            EditorView(navigationPath: $navigationPath)
+                            EditorView(navigationPath: $navigationPath, currentSession: $currentSession)
                         case .result:
-                            ResultView(navigationPath: $navigationPath)
+                            ResultView(navigationPath: $navigationPath, currentSession: $currentSession, galleryItems: $galleryItems)
                         case .gallery:
-                            GalleryView(navigationPath: $navigationPath)
+                            GalleryView(navigationPath: $navigationPath, galleryItems: $galleryItems)
                         case .galleryDetail(let id):
-                            GalleryDetailView(navigationPath: $navigationPath, itemId: id)
+                            GalleryDetailView(navigationPath: $navigationPath, itemId: id, galleryItems: $galleryItems)
                         case .settings:
                             SettingsView(navigationPath: $navigationPath)
                         case .about:

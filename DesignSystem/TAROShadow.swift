@@ -23,6 +23,11 @@ public enum TAROShadow {
     )
 }
 
+extension TAROShadow.Config {
+    public static let soft = TAROShadow.soft
+    public static let medium = TAROShadow.medium
+}
+
 extension View {
     public func applyTAROShadow(_ style: TAROShadow.Config = TAROShadow.soft) -> some View {
         self.shadow(color: style.color, radius: style.radius, x: style.x, y: style.y)
